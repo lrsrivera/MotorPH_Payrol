@@ -1,69 +1,33 @@
-# MotorPH Payroll System
+##MotorPH Payroll System
+This is a simple payroll system made for MotorPH using Electron.js. It helps with managing employees, attendance, and salaries.
 
-A payroll management system for MotorPH built with Electron.js.
+#Features
+Log in for Employees and HR – Employees and HR staff have separate logins.
+Employee Management – HR can add, update, and manage employee details.
+Attendance Records – Keeps track of employee attendance.
+Payroll Generation – Automatically calculates salaries based on attendance.
+Government Deductions – Computes SSS, PhilHealth, Pag-IBIG, and withholding tax.
+HR Dashboard – A summary page for HR to see payroll and employee data.
+Employee Portal – Employees can check their salary and attendance records.
 
-## Features
-- Employee Management
-- Attendance Tracking
-- Payroll Generation
-- Government Deductions (SSS, PhilHealth, Pag-IBIG, Tax)
-- HR Dashboard
-- Employee Portal
+#Log In Details (For Testing)
+HR Login:
+Username: admin
+Password: motorph
 
-## Demo Database
-The repository includes a pre-populated database (`data/database.db`) with sample:
-- Employee records
-- Attendance data
-- Payroll history
-You can use this to test the system without importing data.
+Employee Login:
+Employee #: 100XX (replace XX with actual numbers)
+Password: motorph
 
-## Setup Instructions
+##Demo Database
+The system comes with a sample database (data/database.db) that includes:
+Employee records
+Attendance data
+Payroll history
 
-### Option 1: Run from Source
-1. Install Node.js from https://nodejs.org/ (LTS version recommended)
-2. Clone this repository:
-```bash
-git clone https://github.com/YOUR_USERNAME/MotorPH_Payroll.git
-cd MotorPH_Payroll
-```
-3. Install dependencies:
-```bash
-npm install
-```
-4. Start the application:
-```bash
-npm start
-```
+You can use this to try out the system without importing files.
 
-### Option 2: Download and Run
-1. Install Node.js from https://nodejs.org/ (LTS version recommended)
-2. Download and extract the ZIP file from GitHub
-3. Open a terminal/command prompt in the extracted folder
-4. Install dependencies:
-```bash
-npm install
-```
-5. Start the application:
-```bash
-npm start
-```
+##If you want to import data
+1.) For employee Details: You can import the database from the website https://docs.google.com/spreadsheets/d/189fvPCZS7JKMBYos00ZEoApqnBB05jAjy2vak6lD4g0/copy and download it as .xlsx file
+2.) For the Attendance Record you must download the database without the employee details. I have a existing file on MotorPH_Payroll>Attendance>Attendance.xlsx or you can just download this: https://docs.google.com/spreadsheets/d/1kx5ym73lv7z3tLfddxjZFWOGCzpW0uF180ybw_AgHU4/edit?usp=sharing
 
-## Default Credentials
-- HR Login: Use any employee ID with password "motorph"
-- Employee Login: Use employee ID as both username and password
-
-## Data Management
-- The database is stored in the `data` folder
-- Employee and attendance data can be imported through Excel files
-- The database will persist unless manually deleted
-- Sample Excel files for importing data are provided in the `sample_data` folder
-
-## Development
-This project uses:
-- Electron.js for the desktop application
-- SQLite3 for the database
-- XLSX for Excel file handling
-- Custom CSS for the Frutiger Aero-inspired design
-
-## Note
-This is a school project developed for educational purposes. 
