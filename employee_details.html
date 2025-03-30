@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Employee Details</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: linear-gradient(135deg, #e6f3ff 0%, #ffffff 100%);
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h2, h3 {
+      color: #0066cc;
+      margin-bottom: 20px;
+      padding: 10px;
+      background: linear-gradient(to right, #e6f3ff, transparent);
+      border-radius: 5px;
+    }
+
+    .info-section {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      border: 1px solid #cce6ff;
+    }
+
+    .info-section h3 {
+      margin-top: 0;
+      background: none;
+      padding: 0;
+    }
+
+    details {
+      margin-bottom: 15px;
+      border: 1px solid #cce6ff;
+      padding: 15px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    details summary {
+      font-weight: bold;
+      cursor: pointer;
+      color: #0066cc;
+      padding: 5px;
+    }
+
+    details summary:hover {
+      background: #f2f9ff;
+      border-radius: 4px;
+    }
+
+    label {
+      display: inline-block;
+      width: 150px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      background: white;
+    }
+
+    th {
+      background: linear-gradient(to bottom, #f2f9ff 0%, #d6ebff 100%);
+      padding: 12px;
+      text-align: left;
+      border-bottom: 2px solid #99ccff;
+    }
+
+    td {
+      padding: 8px 12px;
+      border-bottom: 1px solid #e6f3ff;
+    }
+
+    tr:hover {
+      background-color: #f2f9ff;
+    }
+
+    select, button {
+      padding: 8px 16px;
+      margin-right: 10px;
+      border: 1px solid #99ccff;
+      border-radius: 4px;
+    }
+
+    select {
+      background: white;
+    }
+
+    .action-btn {
+      background: linear-gradient(to bottom, #4da6ff 0%, #0066cc 100%);
+      color: white;
+      border: 1px solid #0059b3;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 5px;
+      transition: all 0.2s;
+    }
+
+    .action-btn:hover {
+      background: linear-gradient(to bottom, #66b3ff 0%, #0073e6 100%);
+      box-shadow: 0 0 5px rgba(0, 102, 204, 0.3);
+    }
+
+    .released {
+      background: linear-gradient(to bottom, #5cb85c 0%, #449d44 100%);
+    }
+
+    .toggle-release {
+      background: linear-gradient(to bottom, #5bc0de 0%, #31b0d5 100%);
+      border-color: #269abc;
+    }
+
+    .payroll-summary {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      margin-top: 15px;
+      border-radius: 8px;
+      border: 1px solid #cce6ff;
+    }
+
+    .week-summary {
+      margin-bottom: 15px;
+      padding: 15px;
+      background: #f8f9fa;
+      border: 1px solid #e6f3ff;
+      border-radius: 4px;
+    }
+
+    .week-summary:hover {
+      background: #f2f9ff;
+    }
+
+    #attendanceRecords {
+      background: white;
+      border-radius: 8px;
+      padding: 15px;
+      border: 1px solid #cce6ff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Employee Details</h2>
+
+    <!-- Basic Info Section -->
+    <div class="info-section">
+      <h3>Basic Information</h3>
+      <p><label>Employee #:</label> <span id="emp_id"></span></p>
+      <p><label>Name:</label> <span id="emp_name"></span></p>
+      <p><label>Position:</label> <span id="emp_position"></span></p>
+      <p><label>Status:</label> <span id="emp_status"></span></p>
+    </div>
+
+    <!-- Collapsible Full Details Section -->
+    <details class="info-section" open>
+      <summary>Show/Hide Full Employee Details</summary>
+      <div id="details">
+        <!-- Full details will be populated here -->
+      </div>
+    </details>
+
+    <!-- Payroll Section -->
+    <div class="info-section">
+      <h3>Monthly Payroll Breakdown</h3>
+      <div style="margin-bottom: 15px;">
+        <select id="payrollYear" onchange="loadPayroll()">
+          <!-- Years will be populated dynamically -->
+        </select>
+        <select id="payrollMonth" onchange="loadPayroll()">
+          <option value="1">January</option>
+          <option value="2">February</option>
+          <option value="3">March</option>
+          <option value="4">April</option>
+          <option value="5">May</option>
+          <option value="6">June</option>
+          <option value="7">July</option>
+          <option value="8">August</option>
+          <option value="9">September</option>
+          <option value="10">October</option>
+          <option value="11">November</option>
+          <option value="12">December</option>
+        </select>
+      </div>
+      <div id="payroll">
+        <!-- Payroll details will be injected here -->
+      </div>
+    </div>
+
+    <div class="info-section">
+      <button onclick="viewAttendance()" class="action-btn">View Attendance Records</button>
+      <div id="attendanceRecords" style="max-height: 400px; overflow-y: auto; margin-top: 15px;">
+        <!-- Attendance records will be displayed here -->
+      </div>
+    </div>
+
+    <button onclick="window.history.back()" class="action-btn">Back to Dashboard</button>
+  </div>
+
+  <!-- Load employee_details.js at the end -->
+  <script src="employee_details.js"></script>
+</body>
+</html>
